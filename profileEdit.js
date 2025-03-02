@@ -58,7 +58,7 @@ export async function uploadFile() {
 
     // Fetch Public URL for the uploaded file
     const { data: urlData } = await supabaseClient.storage
-        .from('my-bucket')
+        .from('CLG')
         .getPublicUrl(filePath);
 
     const piclink = urlData.publicUrl;
