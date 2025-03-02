@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alumni Connect Program</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="profileEdit.js" type="module" defer></script>
 </head>
 <body>
   
@@ -40,7 +41,7 @@
         <!-- Profile Picture Upload -->
         <div class="form-group">
           <label for="profile-picture">Profile Picture</label>
-          <input type="file" id="profile-picture" accept="image/*" />
+          <input type="file" id="fileInput"  accept="image/*" />
         </div>
   
         <!-- Name -->
@@ -80,7 +81,7 @@
         </div>
   
         <!-- Submit Button -->
-        <button type="submit" class="submit-button">Save Changes</button>
+        <button type="button" class="submit-button" id="uploadBtn">Save Changes</button>
       </form>
     </div>
   </section>
@@ -117,6 +118,6 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- <script src="script.js"></script> -->
 </body>
 </html>

@@ -3,12 +3,14 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/fireba
 import {
   getAuth,
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
-import {
-  getFirestore,
-  setDoc,
-  doc,
-} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+// import {
+//   getFirestore,
+//   setDoc,
+//   doc,
+// } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -22,6 +24,8 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+// initailize firebase google sso
+const provider = new GoogleAuthProvider();
 
 function showMessage(message, divId) {
   var messageDiv = document.getElementById(divId);
@@ -85,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
           //   .catch((error) => {
           //     console.error("error writing document", error);
           //   });
-          window.location.href = "index.html";
+          window.location.href = "profile edit page.html";
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -102,4 +106,35 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     console.error("Sign-up button not found.");
   }
+  const signIngoogle = document.getElementById("submitSignIngoogle");
+  signIngoogle.addEventListener("click", (event) => {
+    event.preventDefault();
+    const auth = getAuth();
+
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+        localStorage.setItem("loggedInUserId", user.uid);
+        window.location.href = "index.html";
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+        if (errorCode === "auth/invalid-credential") {
+          alert("Incorrect Email or Password: " + errorMessage);
+        }
+      });
+  });
 });
