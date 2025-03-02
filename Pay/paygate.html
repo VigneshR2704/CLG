@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="min-h-screen bg-black text-white py-20 px-4">
+        <div class="max-w-6xl mx-auto space-y-12">
+            <div class="text-center space-y-4">
+                <h1 class="text-4xl font-bold">Simple pricing for advanced people</h1>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Our pricing is designed for advanced people who need more features and more flexibility.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8" id="pricing-cards">
+                <!-- Pricing cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Choose payment method</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="selected-plan">
+                    <h3>Selected plan</h3>
+                    <div id="selected-plan-details"></div>
+                </div>
+                <div id="payment-methods">
+                    <!-- Payment methods will be dynamically inserted here -->
+                </div>
+                <button id="continue-payment" class="button">Continue to payment</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
