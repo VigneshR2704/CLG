@@ -33,6 +33,31 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 
+document.addEventListener("DOMContentLoaded", () => {
+  const pfbutton = document.getElementById("profilebtn");
+
+  function updateProfileButton() {
+      const loggedInUserId = localStorage.getItem("loggedInUserId");
+
+      if (pfbutton) {
+          pfbutton.textContent = loggedInUserId ? "Profile" : "Login";
+          const newHref = loggedInUserId ? "Profile.html" : "signin.html";
+          pfbutton.setAttribute("href", newHref);
+
+          // 🔹 Force navigation when clicked
+          pfbutton.addEventListener("click", (event) => {
+              event.preventDefault(); // Prevent default <a> behavior
+              window.location.href = newHref;
+          });
+      }
+  }
+
+  updateProfileButton();
+  window.addEventListener("storage", updateProfileButton);
+});
+
+
+
 
 faqQuestions.forEach(question => {
   question.addEventListener('click', () => {
@@ -161,3 +186,4 @@ document.addEventListener('DOMContentLoaded', function () {
               }, false);
           });
       })();
+    
