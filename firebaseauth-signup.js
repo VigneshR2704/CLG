@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // IdP data available using getAdditionalUserInfo(result)
         // ...
         localStorage.setItem("loggedInUserId", user.uid);
-        window.location.href = "index.html";
+        window.location.href = "profile edit page.html";
       })
       .catch((error) => {
         // Handle Errors here.
